@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SmileYikBlogTool</class>
+ <widget class="QMainWindow" name="SmileYikBlogTool">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>818</width>
+    <height>425</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>SmileYikBlogTool</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="blogFrame">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>161</width>
+      <height>361</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QScrollArea" name="chooseBlogScrollArea">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>161</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>159</width>
+        <height>199</height>
+       </rect>
+      </property>
+      <widget class="QListWidget" name="blogListWeight">
+       <property name="geometry">
+        <rect>
+         <x>-1</x>
+         <y>-1</y>
+         <width>161</width>
+         <height>201</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>200</y>
+       <width>141</width>
+       <height>151</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>先选择一个博客</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>10</y>
+      <width>191</width>
+      <height>361</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>189</width>
+       <height>359</height>
+      </rect>
+     </property>
+     <widget class="QListWidget" name="albumListWeight">
+      <property name="geometry">
+       <rect>
+        <x>-1</x>
+        <y>-2</y>
+        <width>191</width>
+        <height>361</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>10</y>
+      <width>421</width>
+      <height>361</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>目录编辑</string>
+     </attribute>
+     <widget class="QScrollArea" name="scrollArea_2">
+      <property name="geometry">
+       <rect>
+        <x>-10</x>
+        <y>-10</y>
+        <width>431</width>
+        <height>341</height>
+       </rect>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_3">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>429</width>
+         <height>339</height>
+        </rect>
+       </property>
+       <widget class="QTreeWidget" name="itemTree">
+        <property name="geometry">
+         <rect>
+          <x>11</x>
+          <y>15</y>
+          <width>411</width>
+          <height>261</height>
+         </rect>
+        </property>
+        <property name="contextMenuPolicy">
+         <enum>Qt::CustomContextMenu</enum>
+        </property>
+        <property name="acceptDrops">
+         <bool>false</bool>
+        </property>
+        <property name="dragEnabled">
+         <bool>false</bool>
+        </property>
+        <property name="dragDropOverwriteMode">
+         <bool>false</bool>
+        </property>
+        <property name="autoExpandDelay">
+         <number>-1</number>
+        </property>
+        <property name="itemsExpandable">
+         <bool>false</bool>
+        </property>
+        <property name="columnCount">
+         <number>2</number>
+        </property>
+        <column>
+         <property name="text">
+          <string notr="true">id</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>title</string>
+         </property>
+         <property name="textAlignment">
+          <set>AlignCenter</set>
+         </property>
+        </column>
+       </widget>
+       <widget class="QPushButton" name="itemUp">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>290</y>
+          <width>92</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>上移</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="itemDown">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>290</y>
+          <width>92</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>下移</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="itemSave">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>290</y>
+          <width>92</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>保存结构</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="itemDelete">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>290</y>
+          <width>92</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>删除</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>文章集</string>
+     </attribute>
+     <widget class="QLineEdit" name="albumIdEdit">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>171</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="accessibleName">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>文章专辑名</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="albumAuthorEdit">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>10</y>
+        <width>171</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="accessibleName">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>作者</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="albumTitleEdit">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>391</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="accessibleName">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>文章专辑标题</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="albumAddButon">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>280</y>
+        <width>92</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>添加文章集</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="albumPrevEdit">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>90</y>
+        <width>391</width>
+        <height>181</height>
+       </rect>
+      </property>
+      <property name="placeholderText">
+       <string>文章集展示内容</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>新文章</string>
+     </attribute>
+     <widget class="QScrollArea" name="scrollArea_3">
+      <property name="geometry">
+       <rect>
+        <x>-30</x>
+        <y>-50</y>
+        <width>531</width>
+        <height>441</height>
+       </rect>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_4">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>529</width>
+         <height>439</height>
+        </rect>
+       </property>
+       <widget class="QListWidget" name="postListWidget">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>50</y>
+          <width>201</width>
+          <height>321</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="postIdEdit">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>60</y>
+          <width>201</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>id</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="postTitleEdit">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>100</y>
+          <width>201</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>标题</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="postAuthorEdit">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>140</y>
+          <width>201</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>作者</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="postTagEdit">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>180</y>
+          <width>201</width>
+          <height>29</height>
+         </rect>
+        </property>
+        <property name="placeholderText">
+         <string>Tag(多个用,分隔)</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="postAddButton">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>330</y>
+          <width>92</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>添加</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="postRefreshButton">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>330</y>
+          <width>92</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>刷新</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>818</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>菜单</string>
+    </property>
+    <addaction name="action"/>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="action">
+   <property name="text">
+    <string>保存全部</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
