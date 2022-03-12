@@ -65,4 +65,7 @@ QString Blog::getAlbums() {
     return getBase() + albums;
 }
 
+QString Blog::getNewestPost() {
+    return getBase() + newestPost;
+}
 

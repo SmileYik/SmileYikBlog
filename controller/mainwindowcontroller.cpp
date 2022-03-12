@@ -71,6 +71,7 @@ void MainWindowController::loadBlog(QString id) {
     }
     if (currentAlbums != nullptr) {
         delete currentAlbums;
+        currentAlbums = nullptr;
     }
 
     const Blog* blog = getBlogById(id);
@@ -215,10 +216,16 @@ const QVector<QString>& MainWindowController::getMarkdowns() {
 }
 
 void MainWindowController::saveAll() {
+    QList<Post> allItems;
     QJsonArray allAlbums;
     for (auto begin = albums->begin(), end = albums->end(); begin != end; ++begin) {
         allAlbums.push_back(begin->toJsonObjectWithoutItems());
         QJsonObject aloneAlbumObject = begin->toJsonObject();
+        QList<Post> temp = begin->getAllItems().values();
+        for (Post post : temp) {
+            post.album = begin->id;
+            allItems.append(post);
+        }
         QString filePath = blogBase + currentBlog->getMarkdownAlbumsBase() + begin->id + ".json";
         QFile file(filePath);
         if (!file.open(QIODevice::WriteOnly)) {
@@ -240,7 +247,44 @@ void MainWindowController::saveAll() {
     file.write(array);
     file.flush();
     file.close();
+
+    // refresh newest post
+    std::sort(allItems.begin(), allItems.end(), compareItems);
+    const int count = 6;
+    QJsonArray newPosts;
+    for (int i = 0; i < count && !allItems.empty(); ++i) {
+        Post item = allItems.last();
+        allItems.pop_back();
+        QJsonObject obj;
+        QJsonValue jId(item.id);
+        QJsonValue jAlbum(item.album);
+        QJsonValue jTitle(item.title);
+        QJsonValue jPostTime(item.postTime);
+        QJsonValue jModifyTime(item.modifyTime);
+        QJsonValue jAuthor(item.author);
+        QJsonValue jTag(item.getTag());
+        obj["id"] = jId;
+        obj["album"] = jAlbum;
+        obj["title"] = jTitle;
+        obj["postTime"] = jPostTime;
+        obj["modifyTime"] = jModifyTime;
+        obj["author"] = jAuthor;
+        obj["tag"] = jTag;
+        newPosts.append(obj);
+    }
+    QJsonDocument newestPostDoc(newPosts);
+    QFile newestPostFile(blogBase + currentBlog->getNewestPost());
+    if (newestPostFile.open(QIODevice::WriteOnly)) {
+        newestPostFile.write(newestPostDoc.toJson());
+        newestPostFile.flush();
+        newestPostFile.close();
+    }
 }
+
+bool MainWindowController::compareItems(Post& i1, Post& i2) {
+    return i1.modifyTime > i2.modifyTime;
+}
+
 
 int MainWindowController::addPost(Post post) {
     if (currentAlbums == nullptr) {
@@ -265,3 +309,20 @@ int MainWindowController::addPost(Post post) {
     searchMarkdowns();
     return 0;
 }
+
+void MainWindowController::removeAlbum() {
+    if (currentAlbums == nullptr) {
+        return;
+    }
+    for (int i = 0; i < albums->count(); ++i) {
+        const Album album = albums->at(i);
+        if (album.id == currentAlbums->id) {
+            albums->remove(i);
+            albumIds->removeOne(currentAlbums->id);
+            break;
+        }
+    }
+    delete currentAlbums;
+    currentAlbums = nullptr;
+}
+

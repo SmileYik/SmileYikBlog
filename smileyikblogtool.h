@@ -38,6 +38,8 @@ private slots:
 
     void on_itemDelete_clicked();
 
+    void on_albumDeleteButon_clicked();
+
 private:
     Ui::SmileYikBlogTool *ui;
     MainWindowController controller;

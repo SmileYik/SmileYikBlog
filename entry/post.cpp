@@ -23,8 +23,8 @@ Post::Post(int weight, QJsonObject& obj) {
     title = obj.value("title").toString();
     markdown = obj.value("markdown").toString();
     author = obj.value("author").toString();
-    postTime = obj.value("postTime").toString().toLongLong();
-    modifyTime = obj.value("modifyTime").toString().toLongLong();
+    postTime = obj.value("postTime").toDouble();
+    modifyTime = obj.value("modifyTime").toDouble();
     prev = obj.value("prev").toString();
     QString tagStr = obj.value("tag").toString();
     QStringList list = tagStr.split(",");
@@ -90,7 +90,7 @@ void Post::removeItem(Post& item) {
     }
 }
 bool Post::compareItems(Post& i1, Post& i2) {
-    return i1.weight > i2.weight;
+    return i2.weight > i1.weight;
 }
 
 
@@ -129,11 +129,6 @@ void Post::autoFinish(QString markdownBase) {
 }
 
 QJsonObject Post::toJsonObject() {
-    QString tag = "";
-    for (auto begin = tags.begin(), end = tags.end(); begin != end; ++begin) {
-        tag += *begin + ",";
-    }
-
     QJsonObject obj;
     QJsonValue jId(id);
     QJsonValue jTitle(title);
@@ -142,7 +137,7 @@ QJsonObject Post::toJsonObject() {
     QJsonValue jModifyTime(modifyTime);
     QJsonValue jAuthor(author);
     QJsonValue jPrev(prev);
-    QJsonValue jTag(tag);
+    QJsonValue jTag(getTag());
     obj["id"] = jId;
     obj["title"] = jTitle;
     obj["markdown"] = jMarkdown;
@@ -159,4 +154,12 @@ QJsonObject Post::toJsonObject() {
     QJsonValue allItems(itemArray);
     obj["items"] = allItems;
     return obj;
+}
+
+QString Post::getTag() {
+    QString tag = "";
+    for (auto begin = tags.begin(), end = tags.end(); begin != end; ++begin) {
+        tag += *begin + ",";
+    }
+    return tag;
 }

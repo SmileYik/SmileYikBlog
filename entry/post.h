@@ -21,6 +21,7 @@ public:
     qint64 postTime;
     qint64 modifyTime;
     QString prev;
+    QString album;
 
     const QSet<QString>& getTags();
     void setTags(QString tags);
@@ -32,6 +33,7 @@ public:
     void sortItems();
     void clearItem();
     void autoFinish(QString markdownBase);
+    QString getTag();
     QJsonObject toJsonObject();
 private:
     QSet<QString> tags;

@@ -241,10 +241,10 @@ void SmileYikBlogTool::on_albumAddButon_clicked()
         QMessageBox::warning(NULL, "warning", "加入失败!");
         return;
     }
-    ui->albumIdEdit->clear();
-    ui->albumTitleEdit->clear();
-    ui->albumAuthorEdit->clear();
-    ui->albumPrevEdit->clear();
+//    ui->albumIdEdit->clear();
+//    ui->albumTitleEdit->clear();
+//    ui->albumAuthorEdit->clear();
+//    ui->albumPrevEdit->clear();
     ui->albumListWeight->clear();
     const QVector<QString> albumIds = controller.getAlbumIds();
     for (auto begin = albumIds.cbegin(), end = albumIds.cend(); begin != end; ++begin) {
@@ -306,10 +306,22 @@ void SmileYikBlogTool::on_postAddButton_clicked()
         QMessageBox::warning(NULL, "添加失败", "作者无效.");
         break;
     }
-    ui->postIdEdit->clear();
-    ui->postTitleEdit->clear();
-    ui->postAuthorEdit->clear();
-    ui->postTagEdit->clear();
+//    ui->postIdEdit->clear();
+//    ui->postTitleEdit->clear();
+//    ui->postAuthorEdit->clear();
+//    ui->postTagEdit->clear();
     on_postRefreshButton_clicked();
     on_albumListWeight_clicked(ui->albumListWeight->currentIndex());
 }
+
+void SmileYikBlogTool::on_albumDeleteButon_clicked()
+{
+    controller.removeAlbum();
+    ui->albumListWeight->clear();
+    const QVector<QString> albumIds = controller.getAlbumIds();
+    for (auto begin = albumIds.cbegin(), end = albumIds.cend(); begin != end; ++begin) {
+        ui->albumListWeight->addItem(*begin);
+    }
+    ui->itemTree->clear();
+}
+

@@ -16,7 +16,7 @@ Album::Album(QJsonObject obj)
 {
     id = obj.value("id").toString();
     title = obj.value("title").toString();
-    modifyTime = obj.value("modifyTime").toString().toLongLong();
+    modifyTime = obj.value("modifyTime").toDouble();
     author = obj.value("author").toString();
     QJsonArray itemArray = obj.value("items").toArray();
     int weight = 0;
@@ -58,7 +58,7 @@ void Album::removeItem(Post &item) {
 }
 
 bool Album::compareItems(Post &i1, Post &i2) {
-    return i1.weight > i2.weight;
+    return i2.weight > i1.weight;
 }
 
 void Album::sortItems() {
@@ -94,6 +94,7 @@ void Album::reshapeItems(Post &ids, Post &parent) {
 
 
 void Album::bakePostMap() {
+    postMap.clear();
     QVector<Post> stack;
     const QVector<Post> posts = getItems();
     for (auto begin = posts.begin(), end = posts.end(); begin != end; ++begin) {
