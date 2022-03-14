@@ -20,6 +20,7 @@ void MainWindowController::init() {
     QJsonObject setting = document.object();
 
     blogBase = setting.value("blogBase").toString();
+    author = setting.value("author").toString();
 
     QJsonArray blogsArray = setting.value("blogs").toArray();
     for (auto begin = blogsArray.begin(), end = blogsArray.end(); begin != end; ++begin) {
@@ -28,6 +29,10 @@ void MainWindowController::init() {
         blogs.push_back(blog);
         blogIds.push_back(blog.getId());
     }
+}
+
+const QString MainWindowController::getAuthor() {
+    return author;
 }
 
 const QVector<QString>& MainWindowController::getBlogIds() {

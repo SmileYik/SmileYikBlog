@@ -15,6 +15,8 @@ SmileYikBlogTool::SmileYikBlogTool(QWidget *parent)
     for (auto begin = blogIds.cbegin(), end = blogIds.cend(); begin != end; ++begin) {
         ui->blogListWeight->addItem(*begin);
     }
+    ui->albumAuthorEdit->setText(controller.getAuthor());
+    ui->postAuthorEdit->setText(controller.getAuthor());
 }
 
 SmileYikBlogTool::~SmileYikBlogTool()
@@ -323,5 +325,22 @@ void SmileYikBlogTool::on_albumDeleteButon_clicked()
         ui->albumListWeight->addItem(*begin);
     }
     ui->itemTree->clear();
+}
+
+
+void SmileYikBlogTool::on_postListWidget_itemClicked(QListWidgetItem *item)
+{
+    if (item != nullptr) {
+        QString path = item->text();
+        QString name;
+        int index = path.lastIndexOf("/");
+        if (index >= 0) {
+            name = path.right(path.size() - index - 1);
+        } else {
+            name = path;
+        }
+        QString title = name.left(name.size() - 3);
+        ui->postTitleEdit->setText(title);
+    }
 }
 

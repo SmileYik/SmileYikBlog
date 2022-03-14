@@ -24,8 +24,10 @@ public:
     void searchMarkdowns();
     const QVector<QString>& getMarkdowns();
     void saveAll();
+    const QString getAuthor();
 private:
     QString blogBase;
+    QString author;
     QVector<Blog> blogs;
     QVector<QString> blogIds;
     QVector<QString> markdowns;

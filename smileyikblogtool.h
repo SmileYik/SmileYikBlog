@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "controller/mainwindowcontroller.h"
 #include <QTreeWidgetItem>
+#include <QListWidgetItem>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class SmileYikBlogTool; }
@@ -39,6 +40,8 @@ private slots:
     void on_itemDelete_clicked();
 
     void on_albumDeleteButon_clicked();
+
+    void on_postListWidget_itemClicked(QListWidgetItem *item);
 
 private:
     Ui::SmileYikBlogTool *ui;
