@@ -62,16 +62,13 @@ void MainWindowController::loadBlog(QString id) {
     }
     if (currentBlog != nullptr) {
         delete currentBlog;
+        currentBlog = nullptr;
     }
-    if (albums != nullptr) {
-        delete albums;
-    }
-    if (albumIds != nullptr) {
+    if (albums != nullptr || albumIds != nullptr) {
         delete albums;
     }
     if (currentAlbums != nullptr) {
         delete currentAlbums;
-        currentAlbums = nullptr;
     }
 
     const Blog* blog = getBlogById(id);
@@ -175,13 +172,15 @@ void MainWindowController::searchMarkdowns() {
     }
     markdowns.clear();
     QDir base(blogBase + currentBlog->getMarkdownBase());
+    QStringList markdownFilter;
+    markdownFilter << "*.md";
     QVector<QString> filePaths;
     QVector<QDir> dirs;
     dirs.append(base);
     while (!dirs.empty()) {
         QDir dir = dirs.front();
         dirs.pop_front();
-        QStringList mds = dir.entryList(QDir::Files);
+        QStringList mds = dir.entryList(markdownFilter, QDir::Files);
         for (auto begin = mds.begin(), end = mds.end(); begin != end; ++begin) {
             filePaths.append(dir.path() + "/" + *begin);
         }
@@ -282,7 +281,7 @@ void MainWindowController::saveAll() {
 }
 
 bool MainWindowController::compareItems(Post& i1, Post& i2) {
-    return i1.modifyTime > i2.modifyTime;
+    return i2.modifyTime > i1.modifyTime;
 }
 
 
